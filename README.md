@@ -97,3 +97,4 @@ def model(x, param):
 Theoretical values for the parameters are widely known. The expected value for the Rydberg constant was $R=1.0973731568157 (12)\times10^{-7}$ $m^{-1}$ (NIST) and the expected values for the quantum corrections were $\mu_s=1.348$, $\mu_p=0.855$ e $\mu_d=0.0148$ (doi:10.1103/physreva.18.229).
 # Results
 We have obtained $R=1.09365 (81)\times 10^{-7}$ $m^{-1}$, $\mu_s=1.3686 (45)$, $\mu_p=0.87335 (36)$ e $\mu_d=0.0150(67)$ which are excelent results given the limitation of our data!
+![alt text](https://github.com/TheAresius/Differential-Evolution-for-data-fitting/blob/main/graph.png?raw=true)
