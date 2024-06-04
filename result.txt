@@ -1,8 +1,8 @@
 Best fit parameters:
-s = (1.3710 ± 0.0044) 
-p = (0.87669 ± 0.00036) 
-d = (0.0200 ± 0.0067) 
-R = (0.0108994 ± 0.0000081) 
+s = (1.3710 Â± 0.0044) 
+p = (0.87669 Â± 0.00036) 
+d = (0.0200 Â± 0.0067) 
+R = (0.0108994 Â± 0.0000081) 
 
 Fitted model:
 s, p, d, R = param
@@ -13,8 +13,8 @@ Chi-square: 1.1257708241100342e-06
 Pearson's R: 0.3098678040833177
 p-value: 0.45511769154596626
 
-Data file: Experimento 3\dados ajuste multiplo simulataneo.csv
-Graph file: Experimento 3\graficos\test multi fit.png
+Data file: data.dat
+Graph file: graph.png
 
 Data used:
 n	inv_lambda [nm^-1]	sigma_n	sigma_inv_lambda [nm^-1]	
