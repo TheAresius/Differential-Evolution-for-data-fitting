@@ -211,14 +211,14 @@ eq = get_function_source(model)
 parameters = ['s', 'p', 'd', 'R']
 unit = ['', '', '', '', 'nm^-1']
 initial_guess = np.array([1.3, 0.8, 0.01, 0.0109])  # initial guess for parameters
-bounds = np.array([[1.2, 1.4], [0.7, 0.9], [0, 0.02], [0.01, 0.02]])  # bounds for each parameter
+bounds = np.array([[1.2, 1.4], [0.7, 0.9], [0, 0.015], [0.01, 0.012]])  # bounds for each parameter
 
 # for fitting 
 '''mask = (x_read > 5200) & (x_read < 5900) # limit the x-data range
 x_data = x_read[mask]
-sx_data = np.zeros_like(x_data)
-y_data = y_read[mask]/np.sum(y_read[mask]) # normalization for P.D.F. of Lorentz-Cauchy distribution
-sy_data = np.zeros_like(x_data)'''
+sx_data = sx_read[mask]
+y_data = y_read[mask]/np.sum(y_read[mask])
+sy_data = sy_read[mask]/np.sum(sy_read[mask])'''
 
 cov_xy = np.cov((x_data, y_data))[0][1]
 R, p_value = pearsonr(x_data, y_data)
