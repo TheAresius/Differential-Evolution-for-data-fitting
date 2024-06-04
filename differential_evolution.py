@@ -214,11 +214,11 @@ initial_guess = np.array([1.3, 0.8, 0.01, 0.0109])  # initial guess for paramete
 bounds = np.array([[1.2, 1.4], [0.7, 0.9], [0, 0.015], [0.01, 0.012]])  # bounds for each parameter
 
 # for fitting 
-'''mask = (x_read > 5200) & (x_read < 5900) # limit the x-data range
+'''mask = (x_read > 1) & (x_read < 10) # limit the x-data range and apply the mask to the other data points within range
 x_data = x_read[mask]
 sx_data = sx_read[mask]
-y_data = y_read[mask]/np.sum(y_read[mask])
-sy_data = sy_read[mask]/np.sum(sy_read[mask])'''
+y_data = y_read[mask]
+sy_data = sy_read[mask]'''
 
 cov_xy = np.cov((x_data, y_data))[0][1]
 R, p_value = pearsonr(x_data, y_data)
@@ -258,7 +258,6 @@ x1_fit = np.linspace(-2*np.abs(np.min(x_data)), 2*np.max(x_data), 10000, endpoin
 
 ax1.plot(x_data*x_scale, y_data*y_scale, 'o', markersize=4, color = 'black')
 ax1.plot(x1_fit*x_scale, model(x1_fit, best_fit_params)*y_scale, color='red', linewidth = 1)
-#ax1.plot(x1_fit*x_scale, model(x1_fit, [5462, 60])*y_scale, color='red', linewidth = 1)
 ax1.errorbar(x_data*x_scale, y_data*y_scale, xerr = sx_data*x_scale, yerr = sy_data*y_scale, fmt = ' ', ecolor = 'black', capsize = 2, elinewidth = 1, alpha=1)
 ax1.set_title(r"Example of multiple fit with coupled equations using Differential Evolution algorithm", fontsize=24)
 ax1.set_xlabel(r'Corrected quantum number $n$', fontsize=24)
