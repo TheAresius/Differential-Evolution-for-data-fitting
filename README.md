@@ -23,7 +23,7 @@ where $\mathbf{M}$ is a $4\times N$ matrix with the $N$ experimental data points
 </p>
 
 $\mathbf{P}$ is the parameter vector containing the best-so-far parameter values for the physical model $f\left(\mathbf{M,P}\right)$ describing the observed phenomena and $r\left(\mathbf{M,P}\right)$ is the residual function that is adapted depending on the nature of the problem.
-For the particular problem our group analysed we use the residual function as:
+For the particular problem our group used the residual function as:
 <p align=center>
 $r\left(\mathbf{M,P}\right)=r_{|log|}=\left| \ln \left( \left| y_i \right| \right) - \ln \left( \left| f(x_i; \mathbf{P}) \right| \right) \right|$
 </p>
