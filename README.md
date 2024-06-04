@@ -1,10 +1,10 @@
 # Differential Evolution for data fitting
 ## Mathematical description
-This script takes into account the differential evolution model into searching parameters for the global minima value of a given error function.
+This script uses the differential evolution model to search for parameters that yield the global minimum of a given error function.
 
 I was inspired by [this](https://sci-hub.st/https://royalsocietypublishing.org/doi/abs/10.1098/rsta.1999.0469) article and some changes were made to the error function in order to incorporate experimental data uncertainty into the model.
 
-The error function the algorithm tries to minimize is:
+The error function that the algorithm aims to minimize is:
 <p align=center>
   $E\left(\mathbf{M},\mathbf{P}\right) = \frac{1}{N-1} \sum r\left(\mathbf{M,P}\right)$
 </p>
@@ -22,7 +22,7 @@ where $\mathbf{M}$ is a $4\times N$ matrix with the $N$ experimental data points
   $$
 </p>
 
-$\mathbf{P}$ is the parameter vector containing the best-so-far parameter values for the physical model $f\left(\mathbf{M,P}\right)$ that describes the observed phenomena and $r\left(\mathbf{M,P}\right)$ is the residual function that is adapted depending on the nature of the problem.
+$\mathbf{P}$ is the parameter vector containing the best-so-far parameter values for the physical model $f\left(\mathbf{M,P}\right)$ describing the observed phenomena and $r\left(\mathbf{M,P}\right)$ is the residual function that is adapted depending on the nature of the problem.
 For the particular problem our group analysed we use the residual function as:
 <p align=center>
 $r\left(\mathbf{M,P}\right)=r_{|log|}=\left| \ln \left( \left| y_i \right| \right) - \ln \left( \left| f(x_i; \mathbf{P}) \right| \right) \right|$
@@ -46,9 +46,9 @@ def numerical_derivative(x, params, h=1e-5):
     y = (model(x + h, params) - model(x - h, params)) / (2 * h)
     return y
 ```
-For further reading check out the article linked above. See also Differential Evolution A Practical Approach to Global Optimization by Kenneth V. Price, Rainer M. Storn, Jouni A. Lampinen. (Springer, 2005).
+For further reading, check out the article linked above. See also "Differential Evolution: A Practical Approach to Global Optimization" by Kenneth V. Price, Rainer M. Storn, and Jouni A. Lampinen (Springer, 2005).
 ## A real life problem
-Our group used optical spectroscopy to study the emission spectrum of sodium with the sharp, principal and diffuse series, as well as the Rydberg's constant and the quantum deffects associated to sodium.
+Our group used optical spectroscopy to study the emission spectrum of sodium, including the sharp, principal, and diffuse series, as well as the Rydberg constant and the quantum defects associated with sodium.
 
 The equations that describe the wavelength $\lambda$ of sodium with respect to its principal quantum number $n$ are:
 
@@ -67,7 +67,7 @@ diffuse series:
 
 where $R$ is the Rydberg's constants and $\mu_s$, $\mu_p$, $\mu_d$ are the quantum deffects for sodium.
 
-Since it is quite difficult to obtain a large amount of data for each series (we tipically obtain number of data points = number of parameters) the usual fitting procedure yields very poor results. In order to get the most of our experimental data we adopted an alternative method.
+Since it is quite difficult to obtain a large amount of data for each series (we tipically obtain the number of data points equal to the number of parameters), the usual fitting procedure yields very poor results. To maximize the utility of our experimental data, we adopted an alternative method.
 
 By combining the equations into a coupled equation with shared parameters we can fit all parameters simultaneously. The criteria for combining the equations is:
 
@@ -88,10 +88,9 @@ This method was incorporated using nested numpy.where:
 ```
 def model(x, param):
     s, p, d, R = param
-    y = np.where(x<10, R*(1/((3-p)**2) - 1/((x-s)**2)), np.where(x<20, R*(1/((3-s))**2 - 1/(x-10-p)**2), R*(1/((3-p)**2) - 1/((x-20-d)**2))))  
-    # for multiple equation with shared parameters use nested np.where:
-    # y = np.where(condition_1, equation_1, np.where(condition_2, equation_2, np.where(condition_3, equation_3, ...)))
-
+    y = np.where(x<10, R*(1/((3-p)**2) - 1/((x-s)**2)),
+                np.where(x<20, R*(1/((3-s))**2 - 1/(x-10-p)**2),
+                        R*(1/((3-p)**2) - 1/((x-20-d)**2))))  
     return y
 ```
 Theoretical values for the parameters are widely known. The expected value for the Rydberg constant was $R=1.0973731568157 (12)\times10^{-7}$ $m^{-1}$ (NIST) and the expected values for the quantum corrections were $\mu_s=1.348$, $\mu_p=0.855$ e $\mu_d=0.0148$ (doi:10.1103/physreva.18.229).
