@@ -65,7 +65,7 @@ diffuse series:
     $\frac{1}{\lambda}=\frac{R}{(3-\mu_p)^2}-\frac{R}{(n-\mu_d)^2}$
 </p>
 
-where $R$ is the Rydberg's constants and $\mu_s$, $\mu_p$, $\mu_d$ are the quantum deffects for sodium.
+where $R$ is the Rydberg's constant and $\mu_s$, $\mu_p$, $\mu_d$ are the quantum deffects for sodium.
 
 Since it is quite difficult to obtain a large amount of data for each series (we tipically obtain the number of data points equal to the number of parameters), the usual fitting procedure yields very poor results. To maximize the utility of our experimental data, we adopted an alternative method.
 
